@@ -1,0 +1,51 @@
+# Migration `20200920072313-userid_string`
+
+This migration has been generated at 9/20/2020, 12:23:13 AM.
+You can check out the [state of the schema](./schema.prisma) after the migration.
+
+## Database Steps
+
+```sql
+PRAGMA foreign_keys=OFF;
+CREATE TABLE "new_Meal" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "user_id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "points" INTEGER NOT NULL,
+    "consumption_date" TEXT NOT NULL
+);
+INSERT INTO "new_Meal" ("id", "user_id", "name", "points", "consumption_date") SELECT "id", "user_id", "name", "points", "consumption_date" FROM "Meal";
+DROP TABLE "Meal";
+ALTER TABLE "new_Meal" RENAME TO "Meal";
+PRAGMA foreign_key_check;
+PRAGMA foreign_keys=ON
+```
+
+## Changes
+
+```diff
+diff --git schema.prisma schema.prisma
+migration 20200920001141-convert_consumption..20200920072313-userid_string
+--- datamodel.dml
++++ datamodel.dml
+@@ -2,18 +2,18 @@
+ // learn more about it in the docs: https://pris.ly/d/prisma-schema
+ datasource db {
+   provider = "sqlite"
+-  url = "***"
++  url = "***"
+ }
+ generator client {
+   provider = "prisma-client-js"
+ }
+ model Meal {
+   id               Int    @default(autoincrement()) @id
+-  user_id          Int
++  user_id          String
+   name             String
+   points           Int
+   consumption_date String
+ }
+```
+
+

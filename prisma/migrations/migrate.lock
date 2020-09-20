@@ -1,0 +1,6 @@
+# Prisma Migrate lockfile v1
+
+20200919231959-initial
+20200920001141-convert_consumption
+20200920072313-userid_string
+20200920073701-back-to-datetime
