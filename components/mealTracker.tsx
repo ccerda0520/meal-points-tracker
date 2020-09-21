@@ -1,29 +1,13 @@
 import React from 'react';
 import DatePicker from 'react-datepicker';
-import { useQuery } from 'react-query';
-import { useFetchUser } from '../utils/user';
+import MealForm from './mealTracker/mealForm';
+import Meals from './mealTracker/meals';
 
 const MealTracker: React.FC = () => {
   let currentDate = new Date();
   currentDate.setHours(0, 0, 0, 0);
   const [selectedDate, setSelectedDate] = React.useState<Date>(currentDate);
-
-  const { user, loading } = useFetchUser();
-  const { isLoading, isError, data, error } = useQuery(
-    ['meals', selectedDate],
-    () => fetch('/api/meals/1?mealdate=' + selectedDate.toISOString()).then((res) => res.json()),
-    {
-      refetchOnReconnect: false,
-      refetchIntervalInBackground: false,
-      refetchOnWindowFocus: false,
-    },
-  );
-
-  if (!user) {
-    return null;
-  }
-
-  console.log(data);
+  const [showMealForm, setShowMealForm] = React.useState<boolean>(false);
 
   return (
     <div>
@@ -35,7 +19,15 @@ const MealTracker: React.FC = () => {
           setSelectedDate(newDate);
         }}
       />
-      {isLoading ? <div>loading...</div> : <div>data</div>}
+      <Meals date={selectedDate} />
+      {showMealForm ? (
+        <div>
+          <MealForm />
+          <button onClick={() => setShowMealForm(false)}>Cancel</button>
+        </div>
+      ) : (
+        <button onClick={() => setShowMealForm(true)}>Add New Meal</button>
+      )}
     </div>
   );
 };

@@ -6,7 +6,7 @@ const Layout = ({ children }: any) => {
   return (
     <UserProvider value={{ user, loading }}>
       <Head>
-        <title>Create Next App</title>
+        <title>Meal Tracker</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>{children}</main>

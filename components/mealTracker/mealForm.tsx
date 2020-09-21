@@ -1,11 +1,11 @@
 import React from 'react';
 
 const MealForm = () => {
-  const [fields, setFields] = React.useState({ user_id: '1', consumption_date: new Date().toISOString(), points: 4, name: '' });
+  const [fields, setFields] = React.useState({ consumption_date: new Date().toISOString(), points: 4, name: '' });
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    fetch('http://localhost:3000/api/meals', {
+    fetch('/api/meals', {
       method: 'POST',
       body: JSON.stringify({ ...fields }),
     });

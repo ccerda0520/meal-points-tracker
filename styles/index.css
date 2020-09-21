@@ -1,0 +1,74 @@
+@tailwind base;
+
+/* Write your own custom base styles here */
+
+/* Start purging... */
+@tailwind components;
+/* Stop purging. */
+
+/* Write you own custom component styles here */
+.btn-blue {
+  @apply bg-blue-500 text-white font-bold py-2 px-4 rounded;
+}
+
+/* Start purging... */
+@tailwind utilities;
+/* Stop purging. */
+
+/* Your own custom utilities */
+
+p:not(:last-of-type) {
+  @apply pb-6;
+}
+
+a {
+  @apply text-scarlet font-bold;
+}
+
+a:hover {
+  @apply text-darkgray;
+}
+
+h1 {
+  @apply text-3xl text-darkgray pb-4 leading-none;
+}
+
+h2 {
+  @apply text-2xl font-bold pb-3 leading-tight;
+}
+
+h3 {
+  @apply text-lg font-bold pb-2 leading-tight;
+}
+
+.btn {
+  @apply inline-block font-bold py-2 px-8 rounded-md border border-2 border-solid;
+}
+
+/* .btn-red {
+  @apply text-white bg-scarlet border-scarlet;
+}
+
+.btn-red:hover {
+  @apply text-scarlet bg-white;
+}
+
+.btn-white {
+  @apply text-scarlet bg-white border-scarlet;
+}
+
+.btn-white:hover {
+  @apply text-white bg-scarlet;
+} */
+
+@screen md {
+  h1 {
+    @apply text-5xl;
+  }
+  h2 {
+    @apply text-3xl;
+  }
+  h3 {
+    @apply text-xl;
+  }
+}
